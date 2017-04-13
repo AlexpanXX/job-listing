@@ -4,7 +4,7 @@ class Admin::JobsController < ApplicationController
   before_action :find_job_by_id, only: [:show, :edit, :update, :destroy, :hide, :publish]
 
   def index
-    @jobs = Job.all.recent
+    @jobs = Job.all.recent.paginate(page: params[:page], per_page: 10)
   end
 
   def new
@@ -34,11 +34,19 @@ class Admin::JobsController < ApplicationController
   end
 
   def hide
-    @job.hide!
+    unless @job.is_hidden && @job.hide!
+      redirect_to admin_jobs_path, notice: "Job has been hidden."
+    else
+      flash[:warning] = "Job already hidden."
+    end
   end
 
   def publish
-    @job.publish!
+    if @job.is_hidden && @job.publish!
+      redirect_to admin_jobs_path, notice: "Job has been published."
+    else
+      flash[:warning] = "Job already published."
+    end
   end
 
   private

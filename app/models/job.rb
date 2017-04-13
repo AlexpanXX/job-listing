@@ -4,17 +4,18 @@ class Job < ApplicationRecord
 
   has_many :resumes
 
+  scope :publish, -> { where(is_hidden: false) }
   scope :recent, -> { order("created_at DESC") }
   scope :by_lower_bound, -> { order("wage_lower_bound DESC")}
   scope :by_upper_bound, -> { order("wage_upper_bound DESC")}
 
   def hide!
-    is_hidden = true
-    save!
+    self.is_hidden = true
+    self.save!
   end
 
   def publish!
-    is_hidden = false
-    save!
+    self.is_hidden = false
+    self.save!
   end
 end
