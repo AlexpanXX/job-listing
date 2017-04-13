@@ -2,6 +2,7 @@ class Admin::JobsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_is_admin
   before_action :find_job_by_id, only: [:show, :edit, :update, :destroy, :hide, :publish]
+  layout "admin"
 
   def index
     @jobs = Job.all.recent.paginate(page: params[:page], per_page: 10)
@@ -9,6 +10,10 @@ class Admin::JobsController < ApplicationController
 
   def new
     @job = Job.new
+  end
+
+  def show
+    @resuems = @job.resumes
   end
 
   def create
