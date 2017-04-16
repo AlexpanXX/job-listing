@@ -12,10 +12,6 @@ class Admin::JobsController < ApplicationController
     @job = Job.new
   end
 
-  def show
-    @resuems = @job.resumes
-  end
-
   def create
     @job = Job.new(job_params)
     if @job.save
@@ -39,7 +35,8 @@ class Admin::JobsController < ApplicationController
   end
 
   def hide
-    unless @job.is_hidden && @job.hide!
+    unless @job.is_hidden
+      @job.hide!
       redirect_to admin_jobs_path, notice: "Job has been hidden."
     else
       flash[:warning] = "Job already hidden."
@@ -47,7 +44,8 @@ class Admin::JobsController < ApplicationController
   end
 
   def publish
-    if @job.is_hidden && @job.publish!
+    if @job.is_hidden
+      @job.publish!
       redirect_to admin_jobs_path, notice: "Job has been published."
     else
       flash[:warning] = "Job already published."
