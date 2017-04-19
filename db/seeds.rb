@@ -9,12 +9,14 @@
 User.delete_all
 Job.delete_all
 Resume.delete_all
+puts "users/jobs/resumes data deleted."
 
 User.create!(
   email: "ppgod@live.cn",
   password: "12345678",
   is_admin: true
 )
+puts "admin user 'ppgod@live.cn' created."
 
 num = 0
 wage_lower = 5000
@@ -26,16 +28,19 @@ wage_upper = 10000
     wage_lower_bound: wage_lower += 1,
     wage_upper_bound: wage_upper -= 1,
     contact_email: "ppgod@live.cn",
-    is_hidden: false
+    is_hidden: num >25 ? true : false
   )
 }
+puts "25 hidden job and 25 public job created."
 
-user = User.first
-job = Job.first
-5.times {
-  Resume.create!(
-    content: "Job first resume content.",
-    user_id: user.id,
-    job_id: job.id
-  )
-}
+user = User.last
+Job.all.each do |job|
+  5.times {
+    Resume.create!(
+      content: "Job first resume content.",
+      user_id: user.id,
+      job_id: job.id
+    )
+  }
+end
+puts "add 5 resumes to each job."
