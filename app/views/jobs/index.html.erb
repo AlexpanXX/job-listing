@@ -1,4 +1,5 @@
 <div class="col-md-12">
+  <h2>加入创业</h2>
   <ul class="dropdown pull-right">
     <a class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#">
       排序<b class="caret"></b>
@@ -13,6 +14,7 @@
     <thead>
       <tr>
         <th>职位名称</th>
+        <th>公司名称</th>
         <th>薪资下限</th>
         <th>薪资上限</th>
         <th>发布时间</th>
@@ -22,6 +24,7 @@
       <% @jobs.each do |job| %>
         <tr>
           <td><%= link_to(job.title, job_path(job)) %></td>
+          <td><%= link_to(job.startup.name, startup_path(job.startup))%></td>
           <td><%= job.wage_lower_bound %></td>
           <td><%= job.wage_upper_bound %></td>
           <td><%= job.created_at %></td>

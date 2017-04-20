@@ -105,6 +105,9 @@
 }
 
 //---------Content---------
+.content {
+  min-height: 768px;
+}
 
 .content-section-a {
     padding: 50px 0;
@@ -135,12 +138,12 @@
 //---------Footer---------
 
 footer {
-    color: white;
+  color: white;
 }
 
 footer .footer-below {
-    padding: 25px 0;
-    background-color: #233140;
+  padding: 25px 0;
+  background-color: #233140;
 }
 
 footer a {

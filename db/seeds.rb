@@ -25,6 +25,8 @@ num = 0
     name: "Startup " + (num += 1).to_s,
     email: "startup_" + num.to_s + "@email.com",
     description: "Startup description " + num.to_s + " 公司描述信息。",
+    view_count: (25 - num).abs,
+    favorite_count: 100 - num,
     is_hidden: num > 25 ? true : false
   )
   job_num = 0

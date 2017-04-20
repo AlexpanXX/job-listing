@@ -3,9 +3,9 @@
     <div class="row">
       <div class="col-md-12">
         <span class="panel-title">
-          <%= startup.name %>
+          <%= link_to(startup.name, startup_path(startup)) %>
         </span>
-        <% if current_user.admin? %>
+        <% if params[:controller] == "admin/startups" %>
           <%= link_to("删除", admin_startup_path(startup), class: "btn btn-danger btn-sm pull-right", method: :delete, data: {confirm: "Are you sure?"}) %>
           <%= link_to("编辑", edit_admin_startup_path(startup), class: "btn btn-default btn-sm pull-right") %>
         <% end %>

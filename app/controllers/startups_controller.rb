@@ -3,6 +3,8 @@ class StartupsController < ApplicationController
 
   def index
     @startups = case params[:order]
+            when 'by_view_count'
+              Startup.publish.by_view_count
             when 'by_favorite_count'
               Startup.publish.by_favorite_count
             else
@@ -12,13 +14,14 @@ class StartupsController < ApplicationController
   end
 
   def show
-    @startup = startup.find(params[:id])
+    @startup = Startup.find(params[:id])
     @startup.view_count += 1;
     @startup.save
+    @jobs = @startup.jobs.paginate(page: params[:page], per_page: 10)
   end
 
   def favorite
-    @startup = startup.find(params[:id])
+    @startup = Startup.find(params[:id])
     unless current_user.is_follower_of_startup?(@startup)
       current_user.favorite_startup!(@startup)
       update_favorite_count
@@ -29,7 +32,7 @@ class StartupsController < ApplicationController
   end
 
   def dislikes
-    @startup = startup.find(params[:id])
+    @startup = Startup.find(params[:id])
     if current_user.is_follower_of_startup?(@startup)
       current_user.dislikes_startup!(@startup)
       update_favorite_count

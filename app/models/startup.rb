@@ -7,6 +7,7 @@ class Startup < ApplicationRecord
 
   scope :publish, -> { where(is_hidden: false) }
   scope :recent, -> { order("created_at DESC") }
+  scope :by_view_count, -> { order("view_count DESC")}
   scope :by_favorite_count, -> { order("favorite_count DESC")}
 
   def hide!
