@@ -1,0 +1,39 @@
+<div class="col-md-12">
+  <h2>用户信息</h2>
+  <div class="container-fluid">
+    <div class="row">
+      <%= link_to("新增用户", new_admin_user_path, class: "btn btn-primary") %>
+    </div>
+  </div>
+  <hr/>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>E-mail</th>
+        <th>投送简历</th>
+        <th>收藏职位</th>
+        <th>收藏公司</th>
+        <th>管理</th>
+        <th>注册时间</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><i class="fa fa-envelope"></i><%= user.email %></td>
+          <td><i class="fa fa-paperclip"></i><%= user.resumes.count %></td>
+          <td><%= user.favorited_jobs.count %></td>
+          <td><%= user.favorited_startups.count %></td>
+          <td>
+            <%= link_to("Edit", edit_admin_user_path(user), class: "btn btn-primary btn-xs") %>
+            <%= link_to("Delete", admin_user_path(user), class: "btn btn-default btn-xs", method: :delete, data: {confirm: "Are you sure?"}) %>
+          </td>
+          <td><%= user.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>
