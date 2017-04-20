@@ -4,6 +4,11 @@
       <a class="navbar-brand" href="/">Pioneers</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><%= link_to("首页", root_path, class: "scroll") %></li>
+        <li><%= link_to("职位", jobs_path, class: "scroll") %></li>
+        <li><%= link_to("创业公司", startups_path, class: "scroll") %></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <% unless current_user %>
           <li><%= link_to("注册", new_user_registration_path) %></li>

@@ -1,0 +1,31 @@
+<div class="col-md-12">
+  <h2><%= @startup.name %></h2>
+  <p><i class="fa fa-envelope"></i><%= @startup.email %></p>
+  <p><%= @startup.description %></p>
+  <hr/>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>职位名称</th>
+        <th>薪资下限</th>
+        <th>薪资上限</th>
+        <th>收藏人数</th>
+        <th>发布时间</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @jobs.each do |job| %>
+        <tr>
+          <td><%= link_to(job.title, job_path(job)) %></td>
+          <td><%= job.wage_lower_bound %></td>
+          <td><%= job.wage_upper_bound %></td>
+          <td><%= job.followers.count %></td>
+          <td><%= job.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

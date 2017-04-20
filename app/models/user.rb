@@ -18,7 +18,7 @@ class User < ApplicationRecord
     is_admin
   end
 
-  def is_follower_of?(startup)
+  def is_follower_of_startup?(startup)
     favorited_startups.include?(startup)
   end
 
@@ -30,11 +30,15 @@ class User < ApplicationRecord
     favorited_startups.delete(startup)
   end
 
+  def is_follower_of_job?(job)
+    favorited_jobs.include?(job)
+  end
+
   def favorite_job!(job)
     favorited_jobs << job
   end
 
-  def dislikes_startup!(job)
+  def dislikes_job!(job)
     favorited_jobs.delete(job)
   end
 end

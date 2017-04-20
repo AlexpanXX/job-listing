@@ -1,0 +1,21 @@
+<div class="col-md-12">
+  <ul class="dropdown">
+    <a class="dropdown-toggle btn btn-default" data-toggle="dropdown" href="#">
+      排序<b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to("按照收藏人数排序", startups_path(order: "by_lower_bound")) %></li>
+      <li><%= link_to("按照发布时间排序", startups_path) %></li>
+    </ul>
+  </ul>
+  <hr/>
+
+  <div class="container-fluid">
+    <div class="row">
+      <%= render partial:"startup", collection: @startups, as: :startup %>
+    </div>
+  </div>
+  <div class="text-center">
+    <%= will_paginate @startups, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>
