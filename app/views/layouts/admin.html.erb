@@ -9,16 +9,15 @@
   </head>
 
   <body>
-
     <div class="container-fluid">
       <div class="row">
         <%= render "common/navbar" %>
         <%= render "common/flashes" %>
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="<%= params[:controller] == "admin/startups" ? 'active' : '' %>"><a href="<%= admin_startups_path %>">Startups</a></li>
-            <li class="<%= params[:controller] == "admin/jobs" ? 'active' : '' %>"><a href="<%= admin_jobs_path %>">Jobs</a></li>
-            <li class="<%= params[:controller] == "admin/users" ? 'active' : '' %>"><a href="<%= admin_startups_path %>">Users</a></li>
+            <li class="<%= params[:controller] == "admin/startups" ? 'active' : '' %>"><a href="<%= admin_startups_path %>">创业公司</a></li>
+            <li class="<%= params[:controller] == "admin/jobs" ? 'active' : '' %>"><a href="<%= admin_jobs_path %>">职位信息</a></li>
+            <li class="<%= params[:controller] == "admin/users" ? 'active' : '' %>"><a href="<%= admin_users_path %>">用户信息</a></li>
           </ul>
         </div>
         <div class="col-md-2">
@@ -31,6 +30,5 @@
         </div>
       </div>
     </div>
-    <%= render "common/footer" %>
   </body>
 </html>

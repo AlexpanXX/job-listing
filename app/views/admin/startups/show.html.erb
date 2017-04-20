@@ -1,10 +1,10 @@
 <div class="col-md-12">
   <%= link_to("新增职位", new_admin_startup_job_path(@startup), class: "btn btn-default pull-right") %>
   <h2><%= @startup.name %></h2>
-  <p><span class="fa fa-envelop"></span><%= @startup.email %></p>
+  <p><i class="fa fa-envelope"></i><%= @startup.email %></p>
   <p><%= @startup.description %></p>
   <hr/>
-  <table class="table">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>职位名称</th>
@@ -40,6 +40,6 @@
     </tbody>
   </table>
   <div class="text-center">
-    <%= will_paginate @jobs %>
+    <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
   </div>
 </div>

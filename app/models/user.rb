@@ -4,11 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  validates :email, :password, presence: true
+
   has_many :resumes
   has_many :startup_relationships
   has_many :favorited_startups, through: :startup_relationships, source: :startup
   has_many :job_relationships
-  has_many :faborited_jobs, through: :job_relationships, source: :job
+  has_many :favorited_jobs, through: :job_relationships, source: :job
+
+  scope :recent, -> { order("created_at DESC") }
 
   def admin?
     is_admin
