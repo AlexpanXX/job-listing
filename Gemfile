@@ -31,6 +31,7 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'simple_form'
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 gem 'carrierwave'
 gem 'font-awesome-rails'
 

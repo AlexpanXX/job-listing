@@ -1,9 +1,13 @@
 <div class="col-md-12">
+  <%= link_to("新增职位", new_admin_startup_job_path(@startup), class: "btn btn-default pull-right") %>
+  <h2><%= @startup.name %></h2>
+  <p><span class="fa fa-envelop"></span><%= @startup.email %></p>
+  <p><%= @startup.description %></p>
+  <hr/>
   <table class="table">
     <thead>
       <tr>
         <th>职位名称</th>
-        <th>公司名称</th>
         <th>收到简历</th>
         <th>薪资下限</th>
         <th>薪资上限</th>
@@ -18,7 +22,6 @@
             <%= render_job_status(job) %>
             <%= link_to(job.title, admin_job_path(job)) %>
           </td>
-          <td><%= link_to(job.startup.name, admin_startup_path(job.startup)) %></td>
           <td><%= link_to(job.resumes.count, admin_job_resumes_path(job)) %></td>
           <td><%= job.wage_lower_bound %></td>
           <td><%= job.wage_upper_bound %></td>
@@ -37,6 +40,6 @@
     </tbody>
   </table>
   <div class="text-center">
-    <%= will_paginate @jobs, renderer: BootstrapPagination::Rails %>
+    <%= will_paginate @jobs %>
   </div>
 </div>

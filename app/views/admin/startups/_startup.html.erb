@@ -1,0 +1,22 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="row">
+      <div class="col-md-12">
+        <span class="panel-title">
+          <%= startup.name %>
+        </span>
+        <%= link_to("删除", admin_startup_path(startup), class: "btn btn-default btn-sm pull-right", method: :delete, data: {confirm: "Are you sure?"}) %>
+        <%= link_to("编辑", edit_admin_startup_path(startup), class: "btn btn-default btn-sm pull-right") %>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <div class="trix-content">
+      <p><%= simple_format(startup.description) %></p>
+    </div>
+    <hr/>
+    <i class="fa fa-envelope"></i>
+    <span><%= startup.email %></span>
+  </div>
+</div>

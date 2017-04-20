@@ -4,6 +4,8 @@ class Job < ApplicationRecord
 
   belongs_to :startup
   has_many :resumes
+  has_many :job_relationships
+  has_many :followers, through: :job_relationships, source: :user
 
   scope :publish, -> { where(is_hidden: false) }
   scope :recent, -> { order("created_at DESC") }

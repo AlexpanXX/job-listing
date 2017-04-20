@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">Job Listing</a>
+      <a class="navbar-brand" href="/">Pioneers</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
@@ -15,8 +15,10 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
+              <li><%= link_to("我收藏的职位", "#") %></li>
+              <li><%= link_to("我收藏的公司", "#") %></li>
               <% if current_user.admin? %>
-                <li><%= link_to("Admin Panel", admin_jobs_path) %></li>
+                <li><%= link_to("后台管理", admin_jobs_path) %></li>
                 <li class="divider"></li>
               <% end %>
               <li><%= link_to("退出", destroy_user_session_path, method: :delete) %></li>

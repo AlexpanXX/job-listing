@@ -11,9 +11,16 @@
   <body>
 
     <div class="container-fluid">
-      <%= render "common/navbar" %>
-      <%= render "common/flashes" %>
       <div class="row">
+        <%= render "common/navbar" %>
+        <%= render "common/flashes" %>
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="<%= params[:controller] == "admin/startups" ? 'active' : '' %>"><a href="<%= admin_startups_path %>">Startups</a></li>
+            <li class="<%= params[:controller] == "admin/jobs" ? 'active' : '' %>"><a href="<%= admin_jobs_path %>">Jobs</a></li>
+            <li class="<%= params[:controller] == "admin/users" ? 'active' : '' %>"><a href="<%= admin_startups_path %>">Users</a></li>
+          </ul>
+        </div>
         <div class="col-md-2">
           <ul class="nav nav-pills nav-stacked" style="max-width: 300px; padding-top: 20dp;">
             <li class="active"><%= link_to("Jobs Panel", admin_jobs_path) %></li>
@@ -22,9 +29,8 @@
         <div class="col-md-10">
           <%= yield %>
         </div>
+      </div>
     </div>
-
     <%= render "common/footer" %>
-
   </body>
 </html>

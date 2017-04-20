@@ -12,8 +12,14 @@ class Admin::JobsController < ApplicationController
     @job = Job.new
   end
 
+  def show
+    @resumes = @job.resumes
+  end
+
   def create
+    @startup = Startup.find(params[:startup_id])
     @job = Job.new(job_params)
+    @job.startup = @startup
     if @job.save
       redirect_to admin_jobs_path
     else
@@ -37,18 +43,14 @@ class Admin::JobsController < ApplicationController
   def hide
     unless @job.is_hidden
       @job.hide!
-      redirect_to admin_jobs_path, notice: "Job has been hidden."
-    else
-      flash[:warning] = "Job already hidden."
+      redirect_to admin_jobs_path
     end
   end
 
   def publish
     if @job.is_hidden
       @job.publish!
-      redirect_to admin_jobs_path, notice: "Job has been published."
-    else
-      flash[:warning] = "Job already published."
+      redirect_to admin_jobs_path
     end
   end
 
@@ -56,6 +58,7 @@ class Admin::JobsController < ApplicationController
 
   def find_job_by_id
     @job = Job.find(params[:id])
+    @startup = @job.startup
   end
 
   def job_params

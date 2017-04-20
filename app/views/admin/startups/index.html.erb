@@ -1,0 +1,7 @@
+<div class="col-md-12">
+  <p><%= link_to("新增公司", new_admin_startup_path, class: "btn btn-primary") %></p>
+  <%= render partial:"startup", collection: @startups, as: :startup %>
+  <div class="text-center">
+    <%= will_paginate @startups, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>
