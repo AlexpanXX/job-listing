@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default<%= params[:controller].include?('admin') ? ' navbar-fixed-top' : '' %>" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="/">Pioneers</a>
@@ -18,7 +18,7 @@
               <li><%= link_to("我收藏的职位", "#") %></li>
               <li><%= link_to("我收藏的公司", "#") %></li>
               <% if current_user.admin? %>
-                <li><%= link_to("后台管理", admin_jobs_path) %></li>
+                <li><%= link_to("后台管理", admin_startups_path) %></li>
                 <li class="divider"></li>
               <% end %>
               <li><%= link_to("退出", destroy_user_session_path, method: :delete) %></li>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>JobListing</title>
+    <title>Pioneers</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,6 +13,8 @@
       <div class="row">
         <%= render "common/navbar" %>
         <%= render "common/flashes" %>
+      </div>
+      <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="<%= params[:controller] == "admin/startups" ? 'active' : '' %>"><a href="<%= admin_startups_path %>">创业公司</a></li>
@@ -20,12 +22,7 @@
             <li class="<%= params[:controller] == "admin/users" ? 'active' : '' %>"><a href="<%= admin_users_path %>">用户信息</a></li>
           </ul>
         </div>
-        <div class="col-md-2">
-          <ul class="nav nav-pills nav-stacked" style="max-width: 300px; padding-top: 20dp;">
-            <li class="active"><%= link_to("Jobs Panel", admin_jobs_path) %></li>
-          </ul>
-        </div>
-        <div class="col-md-10">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <%= yield %>
         </div>
       </div>
